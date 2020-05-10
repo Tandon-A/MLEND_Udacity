@@ -40,9 +40,9 @@ Both the shallow model and the deep model as introduced in [8] are used as bench
 The shallow model has two convolutional layers and one fully connected layer, and achieves 55% accuracy on the validation set and 54% accuracy on the test set. The deep model has four convolutional layers and two fully connected layers at the end, and achieves 65% accuracy on the validation set and 64% accuracy on the test set. 
 
 ![Shallow Model](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/shallow_model.png "Shallow Model")   
+###### Figure 3 (a): Shallow Model architecture 
 ![Deep Model](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/deep_model.png "Deep Model")  
-
-###### Figure 3: Shallow and Deep Model architecture 
+###### Figure 3 (b): Deep Model architecture 
 
 ### Evaluation Metrics 
 
@@ -53,8 +53,7 @@ where TP = True Positives, FP = False Positives, TN = True Negatives and FN = Fa
 Accuracy as a metric is easy to interpret and implement, but it paints a different picture for a model in case of imbalanced datasets. Consider an example of a binary classification problem with the negative class samples having a ratio of 1:100 with the positive class samples. In such a case, a majority class classifier which always predicts positive class for every image would have 99% accuracy even though the model hasn't learnt any features for classification.  
 
 Metrics such as precision and recall help in evaluating model's performance in case of imbalanced datasets. FER 2013, the dataset used in this project, contains only 547 images for disgust class as compared to the 8989 images for the happiness class. Mathematically,   
-_Precision = TP / (TP + FP)_ 
-_Recall = TP / (TP + FN)_,   
+_Precision = TP / (TP + FP)_  and _Recall = TP / (TP + FN)_,   
 where TP = True Positives, FP = False Positives, TN = True Negatives and FN = False Negative.
 
 ### Project Design 
