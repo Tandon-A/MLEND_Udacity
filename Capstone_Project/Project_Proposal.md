@@ -27,17 +27,17 @@ The dataset consists of a total of 35887 facial images. The dataset labels each 
 ![Dataset Image Statistics](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/data.jpg "Dataset Statistics")  
 ###### Figure 2: FER 2013 dataset statistics 
 
-The dataset is further divided into parts/splits. The training split consists of a total of 28709 images, the public test data has 3589 images, and the private test data consists of 3589 images. The public test data is used as validation dataset. Each image in this dataset is a grayscale image of 48 X 48 pixels. 
+The dataset is further divided into parts/splits. The training split consists of a total of 28709 images, the public test data has 3589 images, and the private test data consists of 3589 images. The public test data is used as validation dataset. Each image in this dataset is a grayscale image of 48 X 48 pixels.  
 
 
 ### Solution Statement
 
-As described above, this project explores the use of Convolutional Neural Networks to recognize emotions in images. The potential solution is to use techniques such as learning rate schedulers, deeper model architectures, and many augmentation techniques to obtain high performance on this task. 
+As described above, this project explores the use of Convolutional Neural Networks to recognize emotions in images. The potential solution is to use techniques such as learning rate schedulers, deeper model architectures, and different augmentation strategies to obtain high performance on this task.  
 
 ### Benchmark Model 
 
 Both the shallow model and the deep model as introduced in [8] are used as benchmark models in this project. 
-The shallow model has two convolutional layers and one fully connected layer, and achieves 55% accuracy on the validation set and 54% accuracy on the test set. The deep model has four convolutional layers and two fully connected layers at the end, and achieves 65% accuracy on the validation set and 64% accuracy on the test set. 
+The shallow model has two convolutional layers and one fully connected layer, and achieves 55% accuracy on the validation set and 54% accuracy on the test set. The deep model has four convolutional layers and two fully connected layers at the end, and achieves 65% accuracy on the validation set and 64% accuracy on the test set.  
 
 ![Shallow Model](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/shallow_model.png "Shallow Model")   
 ###### Figure 3 (a): Shallow Model architecture 
@@ -50,11 +50,13 @@ The Kaggle competition using the FER dataset uses accuracy as the evaluation met
 _Accuracy = (TP + TN) / (TP + FP + TN + FN)_,    
 where TP = True Positives, FP = False Positives, TN = True Negatives and FN = False Negative. 
 
-Accuracy as a metric is easy to interpret and implement, but it paints a different picture for a model in case of imbalanced datasets. Consider an example of a binary classification problem with the negative class samples having a ratio of 1:100 with the positive class samples. In such a case, a majority class classifier which always predicts positive class for every image would have 99% accuracy even though the model hasn't learnt any features for classification.  
+Accuracy as a metric is easy to interpret and implement, but it paints a different picture for a model in case of imbalanced datasets. Consider an example of a binary classification problem with the negative class samples having a ratio of 1:100 with the positive class samples. In such a case, a majority class classifier which always predicts positive class for every image would have 99% accuracy even though the model hasn't learnt any features. Metrics such as precision and recall can help evaluate model’s performance in such cases. 
 
-Metrics such as precision and recall help in evaluating model's performance in case of imbalanced datasets. FER 2013, the dataset used in this project, contains only 547 images for disgust class as compared to the 8989 images for the happiness class. Mathematically,   
+FER 2013, the dataset used in this project, is a bit imbalanced as it contains only 547 images for disgust class as compared to the 8989 images for the happiness class. Hence, precision and recall would be used as additional evaluation metrics. 
+Mathematically,   
 _Precision = TP / (TP + FP)_  and _Recall = TP / (TP + FN)_,   
 where TP = True Positives, FP = False Positives, TN = True Negatives and FN = False Negative.
+
 
 ### Project Design 
 
