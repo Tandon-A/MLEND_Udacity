@@ -36,7 +36,13 @@ As described above, this project explores the use of Convolutional Neural Networ
 
 ### Benchmark Model 
 
-The shallow model, having two convolutional layers and one fully connected layer as introduced in [8] is used as a benchmark model. This model achieves 55% accuracy on the validation set and 54% on the test set. 
+Both the shallow model and the deep model as introduced in [8] are used as benchmark models in this project. 
+The shallow model has two convolutional layers and one fully connected layer, and achieves 55% accuracy on the validation set and 54% accuracy on the test set. The deep model has four convolutional layers and two fully connected layers at the end, and achieves 65% accuracy on the validation set and 64% accuracy on the test set. 
+
+![Shallow Model](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/shallow_model.png "Shallow Model")   
+![Deep Model](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/deep_model.png "Deep Model")  
+
+###### Figure 3: Shallow and Deep Model architecture 
 
 ### Evaluation Metrics 
 
