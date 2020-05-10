@@ -11,6 +11,9 @@ Humans use a mix of voice, gestures and facial expressions to communicate and co
 
 Many studies follow the categorical Ekman emotion model [2], dividing emotions into six basic emotion classes: anger, disgust, fear, happiness, sadness and surprise. In [3], researchers use dimensionality reduction and eigenspaces to recognize emotions. In [4], the authors use a multilayer perceptron (MLP) to learn 'good' features automatically.  Following this, in the present era of deep learning, authors from [5] and [6] have applied convolutional neural networks for this task. 
 
+![Sample Images](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/sample_images.jpg "Sample Images")   
+###### Figure 1: Sample images from FER 2013 dataset.
+
 ### Problem Statement 
 
 This project explores the use of convolutional neural networks for the task of recognizing emotions using facial expressions. Convolutional Neural Networks can learn features automatically in an efficient manner and are ideal to use for a dataset consisting of images.
@@ -20,6 +23,10 @@ This project explores the use of convolutional neural networks for the task of r
 This project uses the Facial Emotion Recognition 2013 (FER 2013) dataset introduced in ICML 2013 workshop on recognizing facial expressions challenge [7].  This dataset is available on Kaggle.  (https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data). 
 
 The dataset consists of a total of 35887 facial images. The dataset labels each image into one of anger, disgust, fear, happiness, sadness, surprise and neutral emotion categories, having 4953, 547, 5121, 8989, 6077, 4002 and 6198 images for the emotion categories respectively.  
+
+![Dataset Image Statistics](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/data.jpg "Dataset Statistics")  
+###### Figure 2: FER 2013 dataset statistics 
+
 The dataset is further divided into parts/splits. The training split consists of a total of 28709 images, the public test data has 3589 images, and the private test data consists of 3589 images. The public test data is used as validation dataset. Each image in this dataset is a grayscale image of 48 X 48 pixels. 
 
 
