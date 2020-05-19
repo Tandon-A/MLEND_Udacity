@@ -77,9 +77,9 @@ This ordering of neurons is known as a convolution filter.  This filter is convo
 The local connectivity between neurons and parameter sharing reduce memory consumption significantly, making them highly efficient to learn features from images. 
 
 A CNN is a sequence of layers where every layer transforms the data through a differentiable function [9]. The three main layers are: 
-1. Convolutional Layer(Conv Layer): This layer represents the collection of convolution filters, transforming the input from one volume representation to another. For example, a Conv layer may change an input image of [48 X 48 X 1] into [48 X 48 X 32], if the layer has 32 filters. 
-2. Pooling Layer(Pool layer): This layer performs a downsampling operation along the spatial dimensions (width, height). For example, a Pool layer would change an input space of [48 X 48 X 32] into [24 X 24 X 32].   
-3. Fully Connected Layer(FC): This layer is like a standard neural network where each neuron is connected to all neurons in the previous volume. This layer is generally used towards the end of a CNN model to classify obtained features into different categories. 
+1. Convolutional Layer (Conv Layer) : This layer represents the collection of convolution filters, transforming the input from one volume representation to another. For example, a Conv layer may change an input image of [48 X 48 X 1] into [48 X 48 X 32], if the layer has 32 filters. 
+2. Pooling Layer (Pool layer) : This layer performs a downsampling operation along the spatial dimensions (width, height). For example, a Pool layer would change an input space of [48 X 48 X 32] into [24 X 24 X 32].   
+3. Fully Connected Layer (FC) : This layer is like a standard neural network where each neuron is connected to all neurons in the previous volume. This layer is generally used towards the end of a CNN model to classify obtained features into different categories. 
 
 This project uses CNNs to recognize emotions in facial images. 
 
