@@ -92,6 +92,34 @@ Both the shallow model and the deep model, as introduced in [10] are used as ben
 ![Deep Model](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/deep_model.png "Deep Model")  
 ###### Figure 5 (b): Deep Model architecture 
 
+## Methodology 
+
+### Data Preprocessing 
+
+As mentioned in the analysis section, this dataset is a CSV file which has a pixels column representing the images. The pixel information is first extracted and is converted to proper image representation to facilitate the CNN training procedure.  For every image, the linear pixel array from the CSV file is converted to a multidimensional array of size 48 X 48.
+
+CNN, in general, are data-intensive, i.e. they require a large amount of data to generalize better. A bunch of data augmentation techniques such as randomly flipping the image along the horizontal axis and randomly rotating the image are applied to increase the dataset size on which the model trains. 
+These techniques are employed at the runtime, and so the memory consumed by the dataset remains low. 
+
+The following augmentation strategies are used to train the final model:  
+1. RandomHorizontalFlip: Flips an image along the horizontal axis randomly. 
+2. Translate: Translate an image along the width and height dimension using a randomly sampled shift.
+3. Scale: Scales an image using a randomly sampled scaling factor.
+4. RandomErasing: Randomly erases small rectangular regions of an image
+
+Along with the augmentation techniques, the images are mean, and standard deviation normalized using the mean and standard deviation value calculated from the training images before the training process starts. 
+The images present in the validation and testing split are also normalized using the training split mean and standard deviation values.
+
+### Implementation 
+ 
+This project uses PyTorch[10] for building CNN models. 
+
+Initially, a simple CNN model composed of three convolutional layers and max-pooling layers is built. 
+Figure -- Basic Model 
+
+This model achieves a validation accuracy of **(fill in value here)** 
+
+
 ## References
 1. Mehrabian, Albert. "Communication without words." Communication theory (2008): 193-200.
 2. Ekman, Paul. "Basic emotions." Handbook of cognition and emotion 98.45-60 (1999): 16.
@@ -103,3 +131,4 @@ Both the shallow model and the deep model, as introduced in [10] are used as ben
 8. Goodfellow, Ian J., et al. "Challenges in representation learning: A report on three machine learning contests." International Conference on Neural Information Processing. Springer, Berlin, Heidelberg, 2013.
 9. CS231n Convolutional Neural Networks for Visual Recognition, cs231n.github.io/convolutional-networks/.
 10. Alizadeh, Shima and Azar Fazel. “Convolutional Neural Networks for Facial Expression Recognition.” ArXiv abs/1704.06756 (2017): n. pag.
+11. Paszke, Adam, et al. "PyTorch: An imperative style, high-performance deep learning library." Advances in Neural Information Processing Systems. 2019.
