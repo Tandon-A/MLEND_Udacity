@@ -112,10 +112,11 @@ The images present in the validation and testing split are also normalized using
 
 ### Implementation 
  
-This project uses PyTorch[10] for building CNN models. 
+This project uses PyTorch[11] for building CNN models. 
 
-Initially, a simple CNN model composed of three convolutional layers and max-pooling layers is built. 
-Figure -- Basic Model 
+Initially, a simple CNN model composed of three convolutional layers and max-pooling layers is built.  
+![Basic Model](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/deep_model.png "Deep Model")  
+###### Figure 6: Simple model architecture 
 
 This model achieves a validation accuracy of **(fill in value here)** 
 
