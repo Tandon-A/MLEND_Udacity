@@ -111,15 +111,35 @@ Along with the augmentation techniques, the images are mean, and standard deviat
 The images present in the validation and testing split are also normalized using the training split mean and standard deviation values.
 
 ### Implementation 
- 
-This project uses PyTorch[11] for building CNN models. 
 
-Initially, a simple CNN model composed of three convolutional layers and max-pooling layers is built.  
-![Basic Model](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/deep_model.png "Deep Model")  
+The implementation consists of two main steps: 
+1. CNN Model training  
+2. Web App development  
+
+During the first step, the CNN model is trained on the dataset following the below steps: 
+1. Load the CSV file in memory.  
+2. Convert images to proper representation.  
+3. Extract training, validation and testing split.   
+4. Create Dataloader, to apply augmentations on the fly while training.   
+5. Define model architecture.   
+6. Setup loss function, optimize.   
+7. Set values for hyperparameters (learning rate, weight decay).   
+8. Train and validate the network.  
+9. Refine the network, hyperparameter values and augmentation strategies.  
+10. Test the final model.  
+11. Serve the final model.   
+
+PyTorch[11]  is used for building and training CNN models. 
+Initially, a simple CNN model composed of three convolutional layers and max-pooling layers is built. All models use cross-entropy loss as the loss criterion and adam optimizer as the optimizer. 
+
+![Basic Model](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/basic_model.png "Basic Model")  
 ###### Figure 6: Simple model architecture 
+This model achieves a validation accuracy of 46.78%. (Only RandomHorizontalFlip used as augmentation strategy in this case)
 
-This model achieves a validation accuracy of **(fill in value here)** 
+The backend of the web app is written in python using the Flask library. The frontend is developed using HTML, CSS and Javascript using bootstrap and jquery libraries. The app is deployed to the web using Heroku.
 
+_TODO_
+**Figure -- Web App** 
 
 ## References
 1. Mehrabian, Albert. "Communication without words." Communication theory (2008): 193-200.
