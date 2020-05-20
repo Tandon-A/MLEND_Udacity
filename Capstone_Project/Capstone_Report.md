@@ -141,6 +141,67 @@ The backend of the web app is written in python using the Flask library. The fro
 _TODO_
 **Figure -- Web App** 
 
+### Refinement 
+
+The basic model in the earlier section is refined upon by using different augmentation strategies, CNN models and learning rate schedulers. 
+
+Firstly two more models are developed by adding more convolutional layers and using dropout in one model. The models are as depicted in the below figures. 
+Figure -- Basic Model 2 
+Figure -- Basic Model 3 
+
+Table 1 -- accuracy of basic model 1, 2 and 3 
+
+Next, the models are trained using different augmentation strategies such as translating, scaling, rotating, flipping.  
+Table 2 -- accuracy of augmentation strategies 
+The augmentation techniques, as illustrated in the data-preprocessing section, are used to train the final model.
+
+Another refinement is done by dynamically changing the learning rate using learning rate schedulers. 
+Table 3 -- accuracy of learning rate schedulers
+
+For the modelling part, resnet18 and resnet34 are experimented with by training from scratch, but they result in lower accuracy. 
+Table 4 -- accuracy for resnet18, 34 
+
+The final model obtained by iterating on the simple model using the above techniques achieved validation accuracy of fill here%
+
+## Results 
+
+### Model Evaluation and validation 
+
+After the refinement step, the model which performs best on the validation set is selected as the final model. 
+
+Figure -- final model 
+The model architecture is as shown in the above figure. The weights of the model are initialized by default in the Pytorch library using the Xavier initialization method. [12]. The model uses a learning rate of 0.001 and is trained for a total of 150 epochs.  Early stopping is used to avoid overfitting, and the model is stopped at epoch (fill here). 
+
+Figure -- loss curve final model 
+
+Performance of the model on the test set is used as a final evaluation step to check how well does the model generalize to unseen data. In this case, the model achieves a test set accuracy of (fill here)%. 
+
+### Justification 
+
+The final model achieves a validation set accuracy of (fill here)% and testing set accuracy of (fill here)%. This model has shown higher performance as compared to the benchmark model's accuracy on both validation and testing set. 
+
+Human scores on this dataset are in the range of [65%, 70%] [8] which is comparable to the final model's performance, showing that the model accurately predicts emotions in facial images. 
+
+Figure -- PR Curve 
+Possibly -- Metric PR 
+Para -- about PR 
+
+## Conclusion 
+
+### Free-Form Visualization
+
+### Reflection 
+
+### Improvement 
+
+While the final model obtained is better than the benchmark model and overall has high performance, there is scope for improvement. 
+
+From a general perspective, adding more data can help the model generalize and distinguish between different classes better. 
+At present, the modelling procedure was focussed on achieving a better performing model, but building a better model also depends on the application context in which the model will be used. Applications such as robots require a model to run on a device with memory and power consumption constraints. In such a case, the focus should be to build an efficient model which achieves high performance while keeping the overhead small.  Techniques such as quantization aware training and creating an efficient architecture by using depthwise separable convolution can be explored. 
+Other techniques such as MixUp [13], AutoAugment[14] and Knowledge distillation[15] can be utilized to increase model performance. 
+
+The deployed web app in this project is a fairly simplistic one. Improvements in the frontend can help boost user experience. Added functionality such as recognizing emotions in real-time using camera feed can be added. 
+
 ## References
 1. Mehrabian, Albert. "Communication without words." Communication theory (2008): 193-200.
 2. Ekman, Paul. "Basic emotions." Handbook of cognition and emotion 98.45-60 (1999): 16.
@@ -153,3 +214,7 @@ _TODO_
 9. CS231n Convolutional Neural Networks for Visual Recognition, cs231n.github.io/convolutional-networks/.
 10. Alizadeh, Shima and Azar Fazel. “Convolutional Neural Networks for Facial Expression Recognition.” ArXiv abs/1704.06756 (2017): n. pag.
 11. Paszke, Adam, et al. "PyTorch: An imperative style, high-performance deep learning library." Advances in Neural Information Processing Systems. 2019.
+12. Glorot, Xavier, and Yoshua Bengio. "Understanding the difficulty of training deep feedforward neural networks." Proceedings of the thirteenth international conference on artificial intelligence and statistics. 2010.
+13. Zhang, Hongyi, et al. "mixup: Beyond empirical risk minimization." arXiv preprint arXiv:1710.09412 (2017).
+14. Cubuk, Ekin D., et al. "Autoaugment: Learning augmentation strategies from data." Proceedings of the IEEE conference on computer vision and pattern recognition. 2019.
+15. Hinton, Geoffrey, Oriol Vinyals, and Jeff Dean. "Distilling the 
