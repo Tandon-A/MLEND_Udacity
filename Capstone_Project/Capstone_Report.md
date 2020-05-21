@@ -202,13 +202,26 @@ Model 2       | cos_warm(2, 20)         | 64.56               |
 
 ReduceLROnPlateau and CosineAnnealingWarmRestarts scheduler with T_0 = 2 and T_mult=10 are selected for further experiments. 
 
+One more iteration of the modelling procedure is performed to boost the performance. Specifically, the filter of the convolutional layers of the two models are changed from the filter size of two to three and zero padding is changed from zero to one. 
+ResNet models are also taken into consideration to see if deeper architectures can help. 
 
+| Model Type       |  Validation accuracy |
+|----------------- |  ------------------- | 
+Model 2 (2X2)      |  64.92               | 
+Model 2 (3X3)      |  67.09               |
+Model 3 (2X2)      |  66.59               | 
+Model 3 (3X3)      |  **68.63**           |
+Resnet18 pretrained|  65.45               | 
+Resnet34 pretrained|  65.81               |
 
+###### Table 4: Learning rate schedulers comparison (models are run for 150 epochs, using data augmentation strategy five)
 
-For the modelling part, resnet18 and resnet34 are experimented with by training from scratch, but they result in lower accuracy. 
-Table 4 -- accuracy for resnet18, 34 
+The filter size of 3 X 3 has improved the performance by almost three percentage points. Model 3 with 3X3 filter size and model 2 with 3X3 filter size are selected for further experiments. 
 
-The final model obtained by iterating on the simple model using the above techniques achieved validation accuracy of fill here%
+Experiments are now conducted with two models - Model 2 (3X3 filter), Model 3 (3X3 filter), two data augmentation strategies - data augmentation strategy three and five and two learning rate schedulers - cos_warm(2, 10) and ReduceLROnPlateau. 
+
+_TODO_
+Mention the final model and training strategy used. Mention accuracy. 
 
 ## Results 
 
