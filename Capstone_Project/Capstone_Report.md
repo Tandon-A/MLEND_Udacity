@@ -104,8 +104,9 @@ These techniques are employed at the runtime, and so the memory consumed by the 
 The following augmentation strategies are used to train the final model:  
 1. RandomHorizontalFlip: Flips an image along the horizontal axis randomly. 
 2. Translate: Translate an image along the width and height dimension using a randomly sampled shift.
-3. Scale: Scales an image using a randomly sampled scaling factor.
-4. RandomErasing: Randomly erases small rectangular regions of an image
+3. RandomRotation: Rotates an image by a random angle. 
+4. Scale: Scales an image using a randomly sampled scaling factor.
+5. RandomErasing: Randomly erases small rectangular regions of an image
 
 Along with the augmentation techniques, the images are mean, and standard deviation normalized using the mean and standard deviation value calculated from the training images before the training process starts. 
 The images present in the validation and testing split are also normalized using the training split mean and standard deviation values.
@@ -192,6 +193,22 @@ Para -- about PR
 
 ### Reflection 
 
+
+The following steps review the entire project flow: 
+1. Interested in emotion recognition, I researched on the work done in the field. Relevant papers and public datasets were found.   
+2. The problem was finalized, and FER 2013 dataset was selected for the project.  
+3. The dataset was downloaded from the Kaggle website and preprocessed.   
+4. CNN models were developed, trained and refined using the PyTorch library.  
+5. The model achieving the highest performance on the validation set was selected as the final model and was further evaluated on the testing set.  
+6. A web application was developed using Flask, HTML, Javascript and Heroku. The final model was deployed in this application.  
+
+I found the steps of training and refining models and developing a web app to be most challenging. I had never worked on the deployment of ML models before this project, and so it was a bit difficult for me. Though I was already familiar with the modelling step, it is a time-taking step as their many parameters to experiment with, making it challenging to complete on time.   
+
+The most exciting aspect was the use of Pytorch JIT (Just in time) compiler for converting the model to a representation which can be used for deployment purposes in the web application. While researching the topic, I found some techniques to extend the FER dataset further to do a multi-label emotion classification. I am sure these techniques would be helpful for some future projects.   
+
+Overall, I am satisfied with the model's performance on the dataset, and it can be used to recognize emotions in static images. 
+The code for this project is available at https://github.com/Tandon-A/MLEND_Udacity/tree/master/Capstone_Project, and the web application is available at **(provide web app link)**. 
+
 ### Improvement 
 
 While the final model obtained is better than the benchmark model and overall has high performance, there is scope for improvement. 
@@ -200,7 +217,7 @@ From a general perspective, adding more data can help the model generalize and d
 At present, the modelling procedure was focussed on achieving a better performing model, but building a better model also depends on the application context in which the model will be used. Applications such as robots require a model to run on a device with memory and power consumption constraints. In such a case, the focus should be to build an efficient model which achieves high performance while keeping the overhead small.  Techniques such as quantization aware training and creating an efficient architecture by using depthwise separable convolution can be explored. 
 Other techniques such as MixUp [13], AutoAugment[14] and Knowledge distillation[15] can be utilized to increase model performance. 
 
-The deployed web app in this project is a fairly simplistic one. Improvements in the frontend can help boost user experience. Added functionality such as recognizing emotions in real-time using camera feed can be added. 
+The deployed web app in this project is a fairly simplistic one. Improvements in the frontend can help boost user experience. Additional functionality, such as recognizing emotions in real-time using camera feed, can be added. 
 
 ## References
 1. Mehrabian, Albert. "Communication without words." Communication theory (2008): 193-200.
@@ -217,4 +234,6 @@ The deployed web app in this project is a fairly simplistic one. Improvements in
 12. Glorot, Xavier, and Yoshua Bengio. "Understanding the difficulty of training deep feedforward neural networks." Proceedings of the thirteenth international conference on artificial intelligence and statistics. 2010.
 13. Zhang, Hongyi, et al. "mixup: Beyond empirical risk minimization." arXiv preprint arXiv:1710.09412 (2017).
 14. Cubuk, Ekin D., et al. "Autoaugment: Learning augmentation strategies from data." Proceedings of the IEEE conference on computer vision and pattern recognition. 2019.
-15. Hinton, Geoffrey, Oriol Vinyals, and Jeff Dean. "Distilling the 
+15. Hinton, Geoffrey, Oriol Vinyals, and Jeff Dean. "Distilling the knowledge in a neural network." arXiv preprint arXiv:1503.02531 (2015).
+
+
