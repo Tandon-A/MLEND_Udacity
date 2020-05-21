@@ -171,7 +171,7 @@ Next, the models are trained using different augmentation strategies such as tra
 |------------ | ------------------------| ------------------- | 
 Model 2       | Data Augmentation 1     | 59.35               | 
 Model 3       | Data Augmentation 1     | 59.74               |  
-Model 2       | Data Augmentation 2     | 63.30             | 
+Model 2       | Data Augmentation 2     | 63.30               | 
 Model 3       | Data Augmentation 2     | 64.28               |
 Model 2       | Data Augmentation 3     | **63.28**           | 
 Model 3       | Data Augmentation 3     | **65.34**           |   
@@ -180,14 +180,30 @@ Model 3       | Data Augmentation 4     | 63.25               |
 Model 2       | Data Augmentation 5     | 62.69               | 
 Model 3       | Data Augmentation 5     | 64.86               |  
 
-###### Table 2: Augmentation strategies comparison (models are run only for 60 epochs)    
+###### Table 2: Augmentation strategies comparison (models are run only for 60 epochs)     
 
 Some of the essential comparisons from the above table are between data augmentation strategy two and three, and strategy four and five. Adding the translate augmentation to strategy two helps both the models achieve very high accuracy on the validation set. (Comparison of strategy two and three). Upon adding the random scaling augmentation, the approach of choosing only one of rotation and scaling at a time works better. (Comparison of method four and five).     
 Data Augmentation strategy three and five are selected for further experiments. 
 
+Another refinement is done by dynamically changing the learning rate using learning rate schedulers. Experiments are conducted with three learning rate schedulers:   
+1. [ReduceLROnPlateau](https://pytorch.org/docs/stable/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau): This scheduler decreases the learning rate by a factor of 0.1 whenever the loss function on the validation set plateaus, i.e. does not fall for more than ten epochs.    
+2. [StepLR](https://pytorch.org/docs/stable/optim.html#torch.optim.lr_scheduler.StepLR): This scheduler decreases the learning rate by a factor of 0.1 after every step size epochs. (step_size is set to 20 epochs)  
+3. [CosineAnnealingWarmRestarts](https://pytorch.org/docs/stable/optim.html#torch.optim.lr_scheduler.CosineAnnealingWarmRestarts): This scheduler decreases the learning rate using a cosine annealing policy and also using warm restarts, i.e. setting the learning rate to be the initial learning rate in between training. Two parameters are experimented with, T_0: Number of epochs for first restart, T_mult: A factor which increases the number of epochs between two restarts. This is referred to as cos_warm(T_0, T_mult) in the project. 
 
-Another refinement is done by dynamically changing the learning rate using learning rate schedulers. 
-Table 3 -- accuracy of learning rate schedulers
+| Model Type  | Learning Rate Scheduler | Validation accuracy |
+|------------ | ------------------------| ------------------- | 
+Model 2       | ReduceLROnPlateau       | 64.70               | 
+Model 2       | StepLR(step_size=20)    | 60.71               |  
+Model 2       | cos_warm(2,10)          | **65.34**           | 
+Model 2       | cos_warm(1, 10)         | 63.75               |
+Model 2       | cos_warm(2, 20)         | 64.56               | 
+
+###### Table 3: Learning rate schedulers comparison (models are run for 150 epochs, using data augmentation strategy five)     
+
+ReduceLROnPlateau and CosineAnnealingWarmRestarts scheduler with T_0 = 2 and T_mult=10 are selected for further experiments. 
+
+
+
 
 For the modelling part, resnet18 and resnet34 are experimented with by training from scratch, but they result in lower accuracy. 
 Table 4 -- accuracy for resnet18, 34 
