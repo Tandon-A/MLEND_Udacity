@@ -159,23 +159,32 @@ Model 3       | 59.74               |
 
 Only random horizontal flip is used for data augmentation to test the models. Model 2 and 3 are comparable to each other and much better than the first model. These models are utilized in further steps. 
 
-Next, the models are trained using different augmentation strategies such as translating, scaling, rotating, flipping.
-DataAugmentation1 = RandomHorizontalFlip   -- trans 1
-DataAugmentation3 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomErasing -- trans 3
-DataAugmentation3 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomAffine(translate=(0.1, 0.1)), RandomErasing -- trans 4
-DataAugmentation4 = RandomHorizontalFlip, RandomAffine(degrees=10, translate=(0.1, 0.1)), RandomErasing -- trans5 
-DataAugmentation5 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomAffine(translate=(0.1, 0.1), scale=(0.8, 0.9)), RandomErasing -- trans 7
-DataAugmentation6 = RandomOrdering(RandomHorizontalFlip, RandomAffine(translate=(0.1, 0.1), One of(RandomRotation(degrees=10), RandomAffine(scale=(0.8, 0.9))))
-
-
+Next, the models are trained using different augmentation strategies such as translating, scaling, rotating, flipping. The following data augmentation strategies are defined:  
+1. Data Augmentation 1 = RandomHorizontalFlip   -- trans 1  
+2. Data Augmentation 2 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomErasing -- trans 3   
+3. Data Augmentation 3 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomAffine(translate=(0.1, 0.1)), RandomErasing -- trans 4     
+4. Data Augmentation 4 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomAffine(translate=(0.1, 0.1), scale=(0.8, 0.9)), RandomErasing -- trans 7   
+5. Data Augmentation 5 = RandomOrdering(RandomHorizontalFlip, RandomAffine(translate=(0.1, 0.1), One of(RandomRotation(degrees=10), RandomAffine(scale=(0.8, 0.9)))) -- trans10     
 
 
 | Model Type  | Augmentation Techniques | Validation accuracy |
 |------------ | ------------------------| ------------------- | 
-Model 2       | DataAugmentation 1      | 59.35               | 
-Model 3       |                         | 59.74               | 
-###### Table 2: Augmentation strategies comparison     
-The augmentation techniques, as illustrated in the data-preprocessing section, are used to train the final model.
+Model 2       | Data Augmentation 1     | 59.35               | 
+Model 3       | Data Augmentation 1     | 59.74               |  
+Model 2       | Data Augmentation 2     | 63.30             | 
+Model 3       | Data Augmentation 2     | 64.28               |
+Model 2       | Data Augmentation 3     | **63.28**           | 
+Model 3       | Data Augmentation 3     | **65.34**           |   
+Model 2       | Data Augmentation 4     | 61.38               | 
+Model 3       | Data Augmentation 4     | 63.25               |
+Model 2       | Data Augmentation 5     | 62.69               | 
+Model 3       | Data Augmentation 5     | 64.86               |  
+
+###### Table 2: Augmentation strategies comparison (models are run only for 60 epochs)    
+
+Some of the essential comparisons from the above table are between data augmentation strategy two and three, and strategy four and five. Adding the translate augmentation to strategy two helps both the models achieve very high accuracy on the validation set. (Comparison of strategy two and three). Upon adding the random scaling augmentation, the approach of choosing only one of rotation and scaling at a time works better. (Comparison of method four and five).     
+Data Augmentation strategy three and five are selected for further experiments. 
+
 
 Another refinement is done by dynamically changing the learning rate using learning rate schedulers. 
 Table 3 -- accuracy of learning rate schedulers
