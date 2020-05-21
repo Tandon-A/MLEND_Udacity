@@ -7,7 +7,7 @@ Abhishek Tandon
 
 ### Project Overview 
 
-Humans use a mix of voice, gestures and facial expressions to communicate and convey their emotions. By representing up to 55% of human communication, facial expressions are the dominant way by which humans express their feelings [1]. An automated system to recognize emotions can improve human-computer interaction and make applications such as patient emotion monitoring in care facilities come true. Analyzing facial images using Computer Vision techniques can help build such automated systems.
+Humans use a mix of voice, gestures and facial expressions to communicate and convey their emotions. By representing up to 55% of human communication, facial expressions are the dominant way by which humans express their feelings [1]. An automated system to recognize emotions can improve human-computer interaction and make applications such as patient emotion monitoring in care facilities come true. Analyzing facial images using Computer Vision techniques can help build such automated systems.  
 Many studies follow the categorical Ekman emotion model [2], dividing emotions into six basic emotion classes: anger, disgust, fear, happiness, sadness and surprise. In [3], researchers use dimensionality reduction and eigenspaces to recognize emotions. In [4], the authors use a multilayer perceptron (MLP) to learn 'good' features automatically. Following this, in the present era of deep learning, authors from [5] and [6] have applied convolutional neural networks for this task.
 
 ![Sample Images](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/sample_images.jpg "Sample Images")   
@@ -19,7 +19,7 @@ The problem of facial emotion recognition is posed as an image classification pr
 Machine Learning approaches using Convolutional Neural Networks (CNN) have shown high performance in image classification tasks. [7]
 A CNN can learn features automatically in an efficient manner and are ideal to use for a dataset consisting of images.
 
-This project explores the use of CNN for the task of recognizing emotions using facial expressions.
+This project explores the use of CNN for the task of recognizing emotions in facial images. 
 
 ### Metrics 
 
@@ -45,7 +45,7 @@ The dataset consists of a total of 35887 facial images. The dataset labels each 
 
 The dataset is further divided into parts/splits. The training split consists of a total of 28709 images, the public test data has 3589 images, and the private test data consists of 3589 images. The public test data is used as validation dataset. Each image in this dataset is a grayscale image of 48 X 48 pixels.
 
-The dataset, as hosted in the Kaggle competition, is a CSV file having a column for pixels. This column needs to be processed and converted to image representation before training. 
+The dataset, as hosted in the Kaggle competition, is a CSV file having a column for pixels. Another column, 'Usage' specifies whether an image is part of training set, PublicTest (validation set) or PrivateTest (test set). Images need to be extracted from the CSV file and stored in arrays denoting the train, validation and testing set separately. 
 
 ### Exploratory Visualization
 
@@ -63,8 +63,8 @@ As an extra step, the average face for every emotion label is also calculated.
 
 As shown in the above figure, the average face presents an idea about how the images distinguish between different emotion categories.
 
-Some sample images of all the classes are plotted. As can be seen in the following figure (figure 5), many images have some watermark text such as the fifth image for 'angry' emotion. The facial pose differs a lot from one image to another, and in many cases, the full face is not visible. 
-Some of the images are very similar, making it difficult for the model to predict correctly just one emotion class. A model might get confused by the fifth image for the anger emotion, as it is very similar to images in the surprise class. 
+Some sample images of all the classes are plotted. As can be seen in the following figure, many images have some watermark text such as the fifth image for 'angry' emotion. The facial pose differs a lot from one image to another, and in many cases, the full face is not visible.   
+Some of the images are very similar, making it difficult for the model to predict correctly just one emotion class. For example, a model might get confused by the fifth image for the anger emotion, as it is very similar to images in the surprise class. 
 
 Data augmentation techniques can help overcome some of these challenges. For example, scaling can help generate more images where the whole face is not visible, supporting the model to learn a better representation. These techniques are explored in further sections. 
 
@@ -81,7 +81,7 @@ A loss function compares the predictions of the model with an expected output. T
 In a NN, each neuron in a layer is connected to every neuron in the previous layer. These dense connections in a NN lead to remarkably high memory usage while learning to classify images. 
 
 In a convolutional neural network (CNN), the neurons are arranged in 3 dimensions (width, height and depth) and are connected only to some neurons in the previous layer.   
-This ordering of neurons is known as a convolution filter.  This filter is convolved across the width and height of the input space to learn features.  The parameters of the convolution filter remain same or shared for every location of the input space.   
+This ordering of neurons is known as a convolution filter.  This filter is convolved across the width and height of the input space to learn features.  The parameters of the convolution filter are shared for every location of the input space.   
 The local connectivity between neurons and parameter sharing reduce memory consumption significantly, making them highly efficient to learn features from images. 
 
 A CNN is a sequence of layers where every layer transforms the data through a differentiable function [9]. The three main layers are: 
@@ -131,8 +131,8 @@ During the first step, the CNN model is trained on the dataset following the bel
 3. Extract training, validation and testing split.   
 4. Create Dataloader, to apply augmentations on the fly while training.   
 5. Define model architecture.   
-6. Setup loss function, optimize.   
-7. Set values for hyperparameters (learning rate, weight decay).   
+6. Setup loss function, optimizer.   
+7. Set values for hyperparameters (learning rate, batch size).   
 8. Train and validate the network.  
 9. Refine the network, hyperparameter values and augmentation strategies.  
 10. Test the final model.  
@@ -143,14 +143,14 @@ Initially, a simple CNN model composed of three convolutional layers and max-poo
 
 ![Basic Model](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/basic_model.png "Basic Model")  
 ###### Figure 7: Model 1 architecture 
-This model achieves a validation accuracy of 46.78%. (Only RandomHorizontalFlip used as augmentation strategy in this case)
+This model achieves a validation accuracy of 46.78%. (Model is trained for 60 epochs using random horizontal flip for data augmentation) 
 
 The modelling step is done on Google Colaboratory, which provides access to GPU for model training. A Google Colaboratory notebook is then linked with the Google drive, which allows storing the CSV file. 
 
 The backend of the web app is written in python using the Flask library. The frontend is developed using HTML, CSS and Javascript using bootstrap and jquery libraries. The app is deployed to the web using Heroku.
 
 _TODO_
-**Figure -- Web App** 
+**Figure 8 -- Web App** 
 
 ### Refinement 
 
@@ -158,37 +158,37 @@ The basic model in the earlier section is refined upon by using different augmen
 
 Firstly two more models are developed by adding more convolutional layers and using dropout in one model. The models are as depicted in the below figure.   
 ![Model 2, 3](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/model_2_3.png "Model 2, 3")  
-###### Figure 8: Model 2 and model 3 architecture 
+###### Figure 9: Model 2 and model 3 architecture 
 
 | Model Type  | Validation accuracy |
 |------------ | --------------------| 
-Model 1       | 43.42               | 
-Model 2       | 59.35               | 
-Model 3       | 59.74               | 
+Model 1       | 46.78%              | 
+Model 2       | 59.35%              | 
+Model 3       | 59.74%              | 
 ###### Table 1: Baisc Model 1, 2 and 3 comparison 
 
 Only random horizontal flip is used for data augmentation to test the models. Model 2 and 3 are comparable to each other and much better than the first model. These models are utilized in further steps. 
 
 Next, the models are trained using different augmentation strategies such as translating, scaling, rotating, flipping. The following data augmentation strategies are defined:  
-1. Data Augmentation 1 = RandomHorizontalFlip   -- trans 1  
-2. Data Augmentation 2 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomErasing -- trans 3   
-3. Data Augmentation 3 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomAffine(translate=(0.1, 0.1)), RandomErasing -- trans 4     
-4. Data Augmentation 4 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomAffine(translate=(0.1, 0.1), scale=(0.8, 0.9)), RandomErasing -- trans 7   
-5. Data Augmentation 5 = RandomOrdering(RandomHorizontalFlip, RandomAffine(translate=(0.1, 0.1), One of(RandomRotation(degrees=10), RandomAffine(scale=(0.8, 0.9)))) -- trans10     
+1. Data Augmentation 1 = RandomHorizontalFlip      
+2. Data Augmentation 2 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomErasing     
+3. Data Augmentation 3 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomAffine(translate=(0.1, 0.1)), RandomErasing       
+4. Data Augmentation 4 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomAffine(translate=(0.1, 0.1), scale=(0.8, 0.9)), RandomErasing      
+5. Data Augmentation 5 = RandomOrdering(RandomHorizontalFlip, RandomAffine(translate=(0.1, 0.1), One of(RandomRotation(degrees=10), RandomAffine(scale=(0.8, 0.9))))     
 
 
 | Model Type  | Augmentation Techniques | Validation accuracy |
 |------------ | ------------------------| ------------------- | 
-Model 2       | Data Augmentation 1     | 59.35               | 
-Model 3       | Data Augmentation 1     | 59.74               |  
-Model 2       | Data Augmentation 2     | 63.30               | 
-Model 3       | Data Augmentation 2     | 64.28               |
-Model 2       | Data Augmentation 3     | **63.28**           | 
-Model 3       | Data Augmentation 3     | **65.34**           |   
-Model 2       | Data Augmentation 4     | 61.38               | 
-Model 3       | Data Augmentation 4     | 63.25               |
-Model 2       | Data Augmentation 5     | 62.69               | 
-Model 3       | Data Augmentation 5     | 64.86               |  
+Model 2       | Data Augmentation 1     | 59.35%              | 
+Model 3       | Data Augmentation 1     | 59.74%              |  
+Model 2       | Data Augmentation 2     | 63.30%              | 
+Model 3       | Data Augmentation 2     | 64.28%              |
+Model 2       | Data Augmentation 3     | **63.28%**          | 
+Model 3       | Data Augmentation 3     | **65.34%**          |   
+Model 2       | Data Augmentation 4     | 61.38%              | 
+Model 3       | Data Augmentation 4     | 63.25%              |
+Model 2       | Data Augmentation 5     | 62.69%              | 
+Model 3       | Data Augmentation 5     | 64.86%              |  
 
 ###### Table 2: Augmentation strategies comparison (models are run only for 60 epochs)     
 
@@ -196,17 +196,17 @@ Some of the essential comparisons from the above table are between data augmenta
 Data Augmentation strategy three and five are selected for further experiments. 
 
 Another refinement is done by dynamically changing the learning rate using learning rate schedulers. Experiments are conducted with three learning rate schedulers:   
-1. [ReduceLROnPlateau](https://pytorch.org/docs/stable/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau): This scheduler decreases the learning rate by a factor of 0.1 whenever the loss function on the validation set plateaus, i.e. does not fall for more than ten epochs.    
-2. [StepLR](https://pytorch.org/docs/stable/optim.html#torch.optim.lr_scheduler.StepLR): This scheduler decreases the learning rate by a factor of 0.1 after every step size epochs. (step_size is set to 20 epochs)  
+1. [ReduceLROnPlateau](https://pytorch.org/docs/stable/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau): This scheduler decreases the learning rate by a factor of gamma whenever the loss function on the validation set plateaus. In this case the learning rate decreases by a factor of 0.1 when the validaton loss does not fall for more than ten epochs.
+2. [StepLR](https://pytorch.org/docs/stable/optim.html#torch.optim.lr_scheduler.StepLR): This scheduler decreases the learning rate by a factor of gamma after every step size epochs. In this case, step size is set to 20 epochs and gamma is set to 0.1. 
 3. [CosineAnnealingWarmRestarts](https://pytorch.org/docs/stable/optim.html#torch.optim.lr_scheduler.CosineAnnealingWarmRestarts): This scheduler decreases the learning rate using a cosine annealing policy and also using warm restarts, i.e. setting the learning rate to be the initial learning rate in between training. Two parameters are experimented with, T_0: Number of epochs for first restart, T_mult: A factor which increases the number of epochs between two restarts. This is referred to as cos_warm(T_0, T_mult) in the project. 
 
 | Model Type  | Learning Rate Scheduler | Validation accuracy |
 |------------ | ------------------------| ------------------- | 
-Model 2       | ReduceLROnPlateau       | 64.70               | 
-Model 2       | StepLR(step_size=20)    | 60.71               |  
-Model 2       | cos_warm(2,10)          | **65.34**           | 
-Model 2       | cos_warm(1, 10)         | 63.75               |
-Model 2       | cos_warm(2, 20)         | 64.56               | 
+Model 2       | ReduceLROnPlateau       | 64.70%              | 
+Model 2       | StepLR(step_size=20)    | 60.71%              |  
+Model 2       | cos_warm(2,10)          | **65.34%**          | 
+Model 2       | cos_warm(1, 10)         | 63.75%              |
+Model 2       | cos_warm(2, 20)         | 64.56%              | 
 
 ###### Table 3: Learning rate schedulers comparison (models are run for 150 epochs, using data augmentation strategy five)     
 
@@ -217,12 +217,12 @@ ResNet models are also taken into consideration to see if deeper architectures c
 
 | Model Type       |  Validation accuracy |
 |----------------- |  ------------------- | 
-Model 2 (2X2)      |  64.92               | 
-Model 2 (3X3)      |  67.09               |
-Model 3 (2X2)      |  66.59               | 
-Model 3 (3X3)      |  **68.63**           |
-Resnet18 pretrained|  65.45               | 
-Resnet34 pretrained|  65.81               |
+Model 2 (2X2)      |  64.92%              | 
+Model 2 (3X3)      |  67.09%              |
+Model 3 (2X2)      |  66.59%              | 
+Model 3 (3X3)      |  **68.63%**          |
+Resnet18 pretrained|  65.45%              | 
+Resnet34 pretrained|  65.81%              |
 
 ###### Table 4: Learning rate schedulers comparison (models are run for 150 epochs, using data augmentation strategy five)
 
@@ -282,8 +282,8 @@ The code for this project is available at https://github.com/Tandon-A/MLEND_Udac
 
 While the final model obtained is better than the benchmark model and overall has high performance, there is scope for improvement. 
 
-From a general perspective, adding more data can help the model generalize and distinguish between different classes better. 
-At present, the modelling procedure was focussed on achieving a better performing model, but building a better model also depends on the application context in which the model will be used. Applications such as robots require a model to run on a device with memory and power consumption constraints. In such a case, the focus should be to build an efficient model which achieves high performance while keeping the overhead small.  Techniques such as quantization aware training and creating an efficient architecture by using depthwise separable convolution can be explored. 
+Adding more data can help the model generalize and distinguish between different classes better.  
+At present, the modelling procedure was focussed on achieving a better performing model, but building a better model also depends on the application context in which the model will be used. Applications such as robots require a model to run on a device with memory and power consumption constraints. In such a case, the focus should be to build an efficient model which achieves high performance while keeping the overhead small.  Techniques such as quantization aware training and creating an efficient architecture by using depthwise separable convolution can be explored.  
 Other techniques such as MixUp [13], AutoAugment[14] and Knowledge distillation[15] can be utilized to increase model performance. 
 
 The deployed web app in this project is a fairly simplistic one. Improvements in the frontend can help boost user experience. Additional functionality, such as recognizing emotions in real-time using camera feed, can be added. 
