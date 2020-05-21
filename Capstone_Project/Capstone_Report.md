@@ -145,6 +145,8 @@ Initially, a simple CNN model composed of three convolutional layers and max-poo
 ###### Figure 7: Model 1 architecture 
 This model achieves a validation accuracy of 46.78%. (Only RandomHorizontalFlip used as augmentation strategy in this case)
 
+The modelling step is done on Google Colaboratory, which provides access to GPU for model training. A Google Colaboratory notebook is then linked with the Google drive, which allows storing the CSV file. 
+
 The backend of the web app is written in python using the Flask library. The frontend is developed using HTML, CSS and Javascript using bootstrap and jquery libraries. The app is deployed to the web using Heroku.
 
 _TODO_
