@@ -99,14 +99,14 @@ Both the shallow model and the deep model, as introduced in [10] are used as ben
 As mentioned in the analysis section, this dataset is a CSV file which has a pixels column representing the images. The pixel information is first extracted and is converted to proper image representation to facilitate the CNN training procedure.  For every image, the linear pixel array from the CSV file is converted to a multidimensional array of size 48 X 48.
 
 CNN, in general, are data-intensive, i.e. they require a large amount of data to generalize better. A bunch of data augmentation techniques such as randomly flipping the image along the horizontal axis and randomly rotating the image are applied to increase the dataset size on which the model trains. 
-These techniques are employed at the runtime, and so the memory consumed by the dataset remains low. 
+These techniques are employed at the runtime, and so the memory consumed by the dataset remains low.
 
-The following augmentation strategies are used to train the final model:  
-1. RandomHorizontalFlip: Flips an image along the horizontal axis randomly. 
-2. Translate: Translate an image along the width and height dimension using a randomly sampled shift.
-3. RandomRotation: Rotates an image by a random angle. 
-4. Scale: Scales an image using a randomly sampled scaling factor.
-5. RandomErasing: Randomly erases small rectangular regions of an image
+Combinations of the following augmentation strategies are used to train the models:    
+1. [RandomHorizontalFlip](https://pytorch.org/docs/stable/torchvision/transforms.html#torchvision.transforms.RandomHorizontalFlip): Flips an image along the horizontal axis randomly. 
+2. [RandomTranslate](https://pytorch.org/docs/stable/torchvision/transforms.html#torchvision.transforms.RandomAffine): Translate an image along the width and height dimension using a randomly sampled shift. It is implemented by specifying only translate agruments in RandomAffine transform in Pytorch library. 
+3. [RandomRotation](https://pytorch.org/docs/stable/torchvision/transforms.html#torchvision.transforms.RandomRotation): Rotates an image by a random angle. 
+4. [RandomScale](https://pytorch.org/docs/stable/torchvision/transforms.html#torchvision.transforms.RandomAffine): Scales an image using a randomly sampled scaling factor. It is implemented by specifying only scaling agruments in RandomAffine transform in Pytorch library. 
+5. [RandomErasing](https://pytorch.org/docs/stable/torchvision/transforms.html#torchvision.transforms.RandomErasing): Randomly erases small rectangular regions of an image
 
 Along with the augmentation techniques, the images are mean, and standard deviation normalized using the mean and standard deviation value calculated from the training images before the training process starts. 
 The images present in the validation and testing split are also normalized using the training split mean and standard deviation values.
@@ -134,7 +134,7 @@ PyTorch[11]  is used for building and training CNN models.
 Initially, a simple CNN model composed of three convolutional layers and max-pooling layers is built. All models use cross-entropy loss as the loss criterion and adam optimizer as the optimizer. 
 
 ![Basic Model](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/basic_model.png "Basic Model")  
-###### Figure 6: Simple model architecture 
+###### Figure 6: Model 1 architecture 
 This model achieves a validation accuracy of 46.78%. (Only RandomHorizontalFlip used as augmentation strategy in this case)
 
 The backend of the web app is written in python using the Flask library. The frontend is developed using HTML, CSS and Javascript using bootstrap and jquery libraries. The app is deployed to the web using Heroku.
@@ -150,10 +150,31 @@ Firstly two more models are developed by adding more convolutional layers and us
 ![Model 2, 3](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/model_2_3.png "Model 2, 3")  
 ###### Figure 7: Model 2 and model 3 architecture 
 
-Table 1 -- accuracy of basic model 1, 2 and 3 
+| Model Type  | Validation accuracy |
+|------------ | --------------------| 
+Model 1       | 43.42               | 
+Model 2       | 59.35               | 
+Model 3       | 59.74               | 
+###### Table 1: Baisc Model 1, 2 and 3 comparison 
 
-Next, the models are trained using different augmentation strategies such as translating, scaling, rotating, flipping.  
-Table 2 -- accuracy of augmentation strategies 
+Only random horizontal flip is used for data augmentation to test the models. Model 2 and 3 are comparable to each other and much better than the first model. These models are utilized in further steps. 
+
+Next, the models are trained using different augmentation strategies such as translating, scaling, rotating, flipping.
+DataAugmentation1 = RandomHorizontalFlip   -- trans 1
+DataAugmentation3 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomErasing -- trans 3
+DataAugmentation3 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomAffine(translate=(0.1, 0.1)), RandomErasing -- trans 4
+DataAugmentation4 = RandomHorizontalFlip, RandomAffine(degrees=10, translate=(0.1, 0.1)), RandomErasing -- trans5 
+DataAugmentation5 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomAffine(translate=(0.1, 0.1), scale=(0.8, 0.9)), RandomErasing -- trans 7
+DataAugmentation6 = RandomOrdering(RandomHorizontalFlip, RandomAffine(translate=(0.1, 0.1), One of(RandomRotation(degrees=10), RandomAffine(scale=(0.8, 0.9))))
+
+
+
+
+| Model Type  | Augmentation Techniques | Validation accuracy |
+|------------ | ------------------------| ------------------- | 
+Model 2       | DataAugmentation 1      | 59.35               | 
+Model 3       |                         | 59.74               | 
+###### Table 2: Augmentation strategies comparison     
 The augmentation techniques, as illustrated in the data-preprocessing section, are used to train the final model.
 
 Another refinement is done by dynamically changing the learning rate using learning rate schedulers. 
