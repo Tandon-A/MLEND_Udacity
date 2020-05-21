@@ -174,7 +174,7 @@ Next, the models are trained using different augmentation strategies such as tra
 2. Data Augmentation 2 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomErasing     
 3. Data Augmentation 3 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomAffine(translate=(0.1, 0.1)), RandomErasing       
 4. Data Augmentation 4 = RandomHorizontalFlip, RandomRotation(degrees=10), RandomAffine(translate=(0.1, 0.1), scale=(0.8, 0.9)), RandomErasing      
-5. Data Augmentation 5 = RandomOrdering(RandomHorizontalFlip, RandomAffine(translate=(0.1, 0.1), One of(RandomRotation(degrees=10), RandomAffine(scale=(0.8, 0.9))))     
+5. Data Augmentation 5 = RandomOrdering(RandomHorizontalFlip, RandomAffine(translate=(0.1, 0.1), One of(RandomRotation(degrees=10), RandomAffine(scale=(0.8, 0.9)))), RandomErasing     
 
 
 | Model Type  | Augmentation Techniques | Validation accuracy |
