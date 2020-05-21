@@ -146,9 +146,9 @@ _TODO_
 
 The basic model in the earlier section is refined upon by using different augmentation strategies, CNN models and learning rate schedulers. 
 
-Firstly two more models are developed by adding more convolutional layers and using dropout in one model. The models are as depicted in the below figures. 
-Figure -- Basic Model 2 
-Figure -- Basic Model 3 
+Firstly two more models are developed by adding more convolutional layers and using dropout in one model. The models are as depicted in the below figure.   
+![Model 2, 3](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/model_2_3.png "Model 2, 3")  
+###### Figure 7: Model 2 and model 3 architecture 
 
 Table 1 -- accuracy of basic model 1, 2 and 3 
 
