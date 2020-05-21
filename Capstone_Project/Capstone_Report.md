@@ -63,6 +63,14 @@ As an extra step, the average face for every emotion label is also calculated.
 
 As shown in the above figure, the average face presents an idea about how the images distinguish between different emotion categories.
 
+Some sample images of all the classes are plotted. As can be seen in the following figure (figure 5), many images have some watermark text such as the fifth image for 'angry' emotion. The facial pose differs a lot from one image to another, and in many cases, the full face is not visible. 
+Some of the images are very similar, making it difficult for the model to predict correctly just one emotion class. A model might get confused by the fifth image for the anger emotion, as it is very similar to images in the surprise class. 
+
+Data augmentation techniques can help overcome some of these challenges. For example, scaling can help generate more images where the whole face is not visible, supporting the model to learn a better representation. These techniques are explored in further sections. 
+
+![EDA sample class images](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/EDA_crop.png "EDA Sample class images")  
+###### Figure 5: Sample image per emotion category
+
 ### Algorithms and Techniques
 
 This section gives an overview of the techniques used in the project.   
@@ -88,9 +96,9 @@ This project uses CNNs to recognize emotions in facial images.
 Both the shallow model and the deep model, as introduced in [10] are used as benchmark models in this project. The shallow model has two convolutional layers and one fully connected layer and achieves 55% accuracy on the validation set and 54% accuracy on the test set. The deep model has four convolutional layers and two fully connected layers at the end and achieves 65% accuracy on the validation set and 64% accuracy on the test set.
 
 ![Shallow Model](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/shallow_model.png "Shallow Model")   
-###### Figure 5 (a): Shallow Model architecture 
+###### Figure 6 (a): Shallow Model architecture 
 ![Deep Model](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/deep_model.png "Deep Model")  
-###### Figure 5 (b): Deep Model architecture 
+###### Figure 6 (b): Deep Model architecture 
 
 ## Methodology 
 
@@ -134,7 +142,7 @@ PyTorch[11]  is used for building and training CNN models.
 Initially, a simple CNN model composed of three convolutional layers and max-pooling layers is built. All models use cross-entropy loss as the loss criterion and adam optimizer as the optimizer. 
 
 ![Basic Model](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/basic_model.png "Basic Model")  
-###### Figure 6: Model 1 architecture 
+###### Figure 7: Model 1 architecture 
 This model achieves a validation accuracy of 46.78%. (Only RandomHorizontalFlip used as augmentation strategy in this case)
 
 The backend of the web app is written in python using the Flask library. The frontend is developed using HTML, CSS and Javascript using bootstrap and jquery libraries. The app is deployed to the web using Heroku.
@@ -148,7 +156,7 @@ The basic model in the earlier section is refined upon by using different augmen
 
 Firstly two more models are developed by adding more convolutional layers and using dropout in one model. The models are as depicted in the below figure.   
 ![Model 2, 3](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/model_2_3.png "Model 2, 3")  
-###### Figure 7: Model 2 and model 3 architecture 
+###### Figure 8: Model 2 and model 3 architecture 
 
 | Model Type  | Validation accuracy |
 |------------ | --------------------| 
