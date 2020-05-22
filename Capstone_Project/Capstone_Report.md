@@ -224,7 +224,7 @@ Model 3 (3X3)      |  **68.63%**          |
 Resnet18 pretrained|  65.45%              | 
 Resnet34 pretrained|  65.81%              |
 
-###### Table 4: Learning rate schedulers comparison (models are run for 150 epochs, using data augmentation strategy five)
+###### Table 4: Models comparison (models are run for 150 epochs, using data augmentation strategy five without any learning rate scheduler)
 
 The filter size of 3 X 3 has improved the performance by almost three percentage points. Model 3 with 3X3 filter size and model 2 with 3X3 filter size are selected for further experiments. 
 
@@ -252,13 +252,13 @@ The final model has a validation accuracy of 69.04%.
 
 As described in the earlier section, the model which performed best on the validation set was selected as the final model. 
 
+The model architecture is as shown in the below figure. The weights of the model are initialized by default in the Pytorch library using the Xavier initialization method. [12]. The model uses a learning rate of 0.001, a batch size of 128 images. Cross-entropy is used as the loss criterion, and the model is trained using Adam optimizer.  The model is trained for a total of 150 epochs. The model is also validated after every training epoch and the model having the highest accuracy is saved as the final model. (In this case, the model achieves the highest validation accuracy after 139 epochs)
+
 ![Final Model](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/final_model.png "Final Model")  
 ###### Figure 10: Final model architecture 
 
-The model architecture is as shown in the above figure. The weights of the model are initialized by default in the Pytorch library using the Xavier initialization method. [12]. The model uses a learning rate of 0.001, a batch size of 128 images. Cross-entropy is used as the loss criterion, and the model is trained using Adam optimizer.  The model is trained for a total of 150 epochs. The model is also validated after every training epoch and the model having the highest accuracy is saved as the final model. (In this case, the model achieves the highest validation accuracy after 139 epochs)
-
 ![Final Accuracy](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/accuracy_final.jpg "Final Accuracy")  
-###### Figure 10: Final model accuracy curve 
+###### Figure 11: Final model accuracy curve 
 
 Performance of the model on the test set is used as a final evaluation step to check how well does the model generalize to unseen data. In this case, the model achieves a test set accuracy of 68.93%. 
 
@@ -286,7 +286,7 @@ The final model achieves a validation set accuracy of 69.03% and testing set acc
 Human scores on this dataset are in the range of [65%, 70%] [8] which is comparable to the final model's performance. 
 
 ![Final ROC](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/ROC_final.jpg "Final ROC")  
-###### Figure 11: Final model ROC curve
+###### Figure 12: Final model ROC curve
 
 The area under the ROC curve for every class is higher than 0.85, showing that the model accurately predicts emotions in facial images. 
 
@@ -300,11 +300,11 @@ In the case of neutral class, most of the images have faces with mouth closed, w
 It also gets difficult for the model to predict labels for angry and fear classes correctly. In many cases, the face is open in angry and fear images leading to the confusion. 
 
 ![Final Conf Matrix](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/confusion_matrix.jpg "Final confusion matrix")  
-###### Figure 12: Final model ROC curve
+###### Figure 13: Final model ROC curve
 
 
 ![Final Free Viz](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/free_viz_final_2cr.png "Final free viz")  
-###### Figure 13: Final model visualization (P stands for predicted emotion and L stands for the ground truth emotion category)
+###### Figure 14: Final model visualization (P stands for predicted emotion and L stands for the ground truth emotion category)
 
 
 
