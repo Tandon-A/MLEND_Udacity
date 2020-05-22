@@ -43,8 +43,9 @@ The final model can be restored using torch.jit.load.
 
 ### Web Application 
 
-The present web application is a rather simple one and can only perform emotion recognition on images which are like that of the dataset. 
-For this purpose, sample images are provided. Images are named by their emotion category and are available in the assets folder. 
+The present web application is a rather simple one and can only perform emotion recognition on images which are like that of the dataset.   
+Images are named by their emotion category and are available in the model_data folder in the submission and are also available [here](https://github.com/Tandon-A/MLEND_Udacity/tree/master/Capstone_Project/Webapp/ferapp/model_data). These images can be used to test the model deployed in the web application. 
+
 Additional functionality to perform inference on natural images can be added to improve the project further. 
 
 ## Notes 
