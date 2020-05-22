@@ -149,8 +149,10 @@ The modelling step is done on Google Colaboratory, which provides access to GPU 
 
 The backend of the web app is written in python using the Flask library. The frontend is developed using HTML, CSS and Javascript using bootstrap and jquery libraries. The app is deployed to the web using Heroku.
 
-_TODO_
-**Figure 8 -- Web App** 
+<img src="https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/web_app2.jpg" width="335" alt-text="Web App">
+<img src="https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/web_app3.jpg" width="350" alt-text="Web App">   
+
+###### Figure 8: Web Application 
 
 ### Refinement 
 
@@ -325,7 +327,7 @@ The most exciting aspect was the use of Pytorch JIT (Just in time) compiler for 
 While researching the topic, I found some techniques to extend the FER dataset further to do a multi-label emotion classification. I am sure these techniques would be helpful for some future projects.   
 
 Overall, I am satisfied with the model's performance on the dataset, and it can be used to recognize emotions in static images.   
-The code for this project is available at https://github.com/Tandon-A/MLEND_Udacity/tree/master/Capstone_Project, and the web application is available at **(provide web app link)**. 
+The code for this project is available at https://github.com/Tandon-A/MLEND_Udacity/tree/master/Capstone_Project, and the web application is available at https://mlend-capstone-fer-webapp.herokuapp.com/. 
 
 ### Improvement 
 
