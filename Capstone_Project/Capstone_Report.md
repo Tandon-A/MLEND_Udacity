@@ -303,7 +303,8 @@ It also gets difficult for the model to predict labels for angry and fear classe
 ###### Figure 12: Final model ROC curve
 
 
-Figure13 --- 7x5 Some sample classifications 
+![Final Free Viz](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/free_viz_final_2cr.png "Final free viz")  
+###### Figure 13: Final model visualization (P stands for predicted emotion and L stands for the ground truth emotion category)
 
 
 
