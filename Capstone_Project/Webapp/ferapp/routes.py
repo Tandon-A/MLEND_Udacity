@@ -10,7 +10,7 @@ import os
 
 activation = torch.nn.Softmax(dim=1)
 indx2emotion = {0: 'Angry', 1: 'Disgust', 2: 'Fear', 3: 'Happy', 4: 'Sad', 5: 'Surprise', 6: 'Neutral'}
-model = torch.jit.load(os.path.join(app.root_path, 'model_data/model_fer_acc_jit_final.pth'))
+model = torch.jit.load(os.path.join(app.root_path, 'model_data/model_fer_acc_jit.pth'))
 model.eval()
 
 def transform_image(image):
