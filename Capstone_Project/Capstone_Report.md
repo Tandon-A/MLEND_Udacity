@@ -230,35 +230,82 @@ The filter size of 3 X 3 has improved the performance by almost three percentage
 
 Experiments are now conducted with two models - Model 2 (3X3 filter), Model 3 (3X3 filter), two data augmentation strategies - data augmentation strategy three and five and two learning rate schedulers - cos_warm(2, 10) and ReduceLROnPlateau. 
 
-_TODO_
-Mention the final model and training strategy used. Mention accuracy. 
+Out of the final experiments, model 3 (3X3 filter) with data augmentation strategy five and cos_warm(2, 10) learning rate scheduler yields the best performance. 
+
+| Model Type       |  Augmentation Techniques  | Learning rate scheduler | Validation Accuracy |
+|----------------- |  ------------------------ | ----------------------- | ------------------- |
+Model 2 (3X3)      |  Data Augmentation 3      | ReduceLROnPLateau       | 65.53%              |
+Model 2 (3X3)      |  Data Augmentation 3      | cos_warm(2,10)          | 67.09%              |
+Model 2 (3X3)      |  Data Augmentation 5      | ReduceLROnPLateau       | 66.59%              |
+Model 2 (3X3)      |  Data Augmentation 5      | cos_warm(2,10)          | 67.21%              |
+Model 3 (3X3)      |  Data Augmentation 3      | ReduceLROnPLateau       | 67.46%              |
+Model 3 (3X3)      |  Data Augmentation 3      | cos_warm(2,10)          | 67.73%              |
+Model 3 (3X3)      |  Data Augmentation 5      | ReduceLROnPLateau       | 68.68%              |
+Model 3 (3X3)      |  Data Augmentation 5      | cos_warm(2,10)          | **69.04%**          |  
+###### Table 5: Final experiments (models are run for 150 epochs)
+
+The final model has a validation accuracy of 69.04%.  
 
 ## Results 
 
 ### Model Evaluation and validation 
 
-After the refinement step, the model which performs best on the validation set is selected as the final model. 
+As described in the earlier section, the model which performed best on the validation set was selected as the final model. 
 
-Figure -- final model 
-The model architecture is as shown in the above figure. The weights of the model are initialized by default in the Pytorch library using the Xavier initialization method. [12]. The model uses a learning rate of 0.001 and is trained for a total of 150 epochs.  Early stopping is used to avoid overfitting, and the model is stopped at epoch (fill here). 
+![Final Model](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/final_model.png "Final Model")  
+###### Figure 10: Final model architecture 
 
-Figure -- loss curve final model 
+The model architecture is as shown in the above figure. The weights of the model are initialized by default in the Pytorch library using the Xavier initialization method. [12]. The model uses a learning rate of 0.001, a batch size of 128 images. Cross-entropy is used as the loss criterion, and the model is trained using Adam optimizer.  The model is trained for a total of 150 epochs. The model is also validated after every training epoch and the model having the highest accuracy is saved as the final model. (In this case, the model achieves the highest validation accuracy after 139 epochs)
 
-Performance of the model on the test set is used as a final evaluation step to check how well does the model generalize to unseen data. In this case, the model achieves a test set accuracy of (fill here)%. 
+![Final Accuracy](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/accuracy_final.jpg "Final Accuracy")  
+###### Figure 10: Final model accuracy curve 
+
+Performance of the model on the test set is used as a final evaluation step to check how well does the model generalize to unseen data. In this case, the model achieves a test set accuracy of 68.93%. 
+
+Below table lists the precision and recall values for the final model on the test set.
+
+|            |  Precision   | Recall   |
+|----------- |  ----------- | ---------|
+Angry        |   0.60       | 0.53     |
+Disgust      |   0.76       | 0.64     |
+Fear         |   0.53       | 0.46     |
+Happy        |   0.87       | 0.90     |
+Sad          |   0.64       | 0.69     |
+Surprise     |   0.49       | 0.57     |
+Neutral      |   0.82       | 0.79     |
+
+###### Table 6:Precision - Recall (on test set) of final model
+
+
+As is evident from the table, the happy class has high precision and recall values since it was the most sampled class in the dataset. The precision values are lower for labels such as surprise and fear. Many samples in these classes are similar, leading to the many false positives.  Also due to the high similarity between fear and sad class, many samples from fear class are classified as sad reducing the recall for fear class. 
 
 ### Justification 
 
-The final model achieves a validation set accuracy of (fill here)% and testing set accuracy of (fill here)%. This model has shown higher performance as compared to the benchmark model's accuracy on both validation and testing set. 
+The final model achieves a validation set accuracy of 69.03% and testing set accuracy of 68.93%. This model has shown higher performance as compared to the benchmark model's accuracy on both validation and testing set. 
 
-Human scores on this dataset are in the range of [65%, 70%] [8] which is comparable to the final model's performance, showing that the model accurately predicts emotions in facial images. 
+Human scores on this dataset are in the range of [65%, 70%] [8] which is comparable to the final model's performance. 
 
-Figure -- PR Curve 
-Possibly -- Metric PR 
-Para -- about PR 
+![Final ROC](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/ROC_final.jpg "Final ROC")  
+###### Figure 11: Final model ROC curve
+
+The area under the ROC curve for every class is higher than 0.85, showing that the model accurately predicts emotions in facial images. 
+
 
 ## Conclusion 
 
 ### Free-Form Visualization
+
+Looking at the confusion matrix of the final model, we can see some expected class confusions. 
+In the case of neutral class, most of the images have faces with mouth closed, which is very similar to images in the sad category. This confusion is symmetrical, i.e. for the neutral class, most images are misclassified as sad and vice-versa for the sad label. 
+It also gets difficult for the model to predict labels for angry and fear classes correctly. In many cases, the face is open in angry and fear images leading to the confusion. 
+
+![Final Conf Matrix](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/confusion_matrix.jpg "Final confusion matrix")  
+###### Figure 12: Final model ROC curve
+
+
+Figure13 --- 7x5 Some sample classifications 
+
+
 
 ### Reflection 
 
