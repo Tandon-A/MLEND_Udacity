@@ -82,7 +82,7 @@ In a NN, each neuron in a layer is connected to every neuron in the previous lay
 
 In a convolutional neural network (CNN), the neurons are arranged in 3 dimensions (width, height and depth) and are connected only to some neurons in the previous layer.   
 This ordering of neurons is known as a convolution filter.  This filter is convolved across the width and height of the input space to learn features.  The parameters of the convolution filter are shared for every location of the input space.   
-The local connectivity between neurons and parameter sharing reduce memory consumption significantly, making them highly efficient to learn features from images. 
+The local connectivity between neurons and parameter sharing properties of a CNN reduce memory consumption significantly, making them highly efficient to learn features from images. 
 
 A CNN is a sequence of layers where every layer transforms the data through a differentiable function [9]. The three main layers are: 
 1. Convolutional Layer (Conv Layer) : This layer represents the collection of convolution filters, transforming the input from one volume representation to another. For example, a Conv layer may change an input image of [48 X 48 X 1] into [48 X 48 X 32], if the layer has 32 filters. 
@@ -198,7 +198,7 @@ Data Augmentation strategy three and five are selected for further experiments.
 Another refinement is done by dynamically changing the learning rate using learning rate schedulers. Experiments are conducted with three learning rate schedulers:   
 1. [ReduceLROnPlateau](https://pytorch.org/docs/stable/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau): This scheduler decreases the learning rate by a factor of gamma whenever the loss function on the validation set plateaus. In this case the learning rate decreases by a factor of 0.1 when the validaton loss does not fall for more than ten epochs.
 2. [StepLR](https://pytorch.org/docs/stable/optim.html#torch.optim.lr_scheduler.StepLR): This scheduler decreases the learning rate by a factor of gamma after every step size epochs. In this case, step size is set to 20 epochs and gamma is set to 0.1. 
-3. [CosineAnnealingWarmRestarts](https://pytorch.org/docs/stable/optim.html#torch.optim.lr_scheduler.CosineAnnealingWarmRestarts): This scheduler decreases the learning rate using a cosine annealing policy and also using warm restarts, i.e. setting the learning rate to be the initial learning rate in between training. Two parameters are experimented with, T_0: Number of epochs for first restart, T_mult: A factor which increases the number of epochs between two restarts. This is referred to as cos_warm(T_0, T_mult) in the project. 
+3. [CosineAnnealingWarmRestarts](https://pytorch.org/docs/stable/optim.html#torch.optim.lr_scheduler.CosineAnnealingWarmRestarts): This scheduler decreases the learning rate uses a cosine annealing policy and also using warm restarts, i.e. setting the learning rate to be the initial learning rate in between training. Two parameters are experimented with, T_0: Number of epochs for first restart, T_mult: A factor which increases the number of epochs between two restarts. This is referred to as cos_warm(T_0, T_mult) in the project. 
 
 | Model Type  | Learning Rate Scheduler | Validation accuracy |
 |------------ | ------------------------| ------------------- | 
@@ -264,7 +264,7 @@ Performance of the model on the test set is used as a final evaluation step to c
 
 Below table lists the precision and recall values for the final model on the test set.
 
-|            |  Precision   | Recall   |
+|Emotion Class|  Precision   | Recall   |
 |----------- |  ----------- | ---------|
 Angry        |   0.60       | 0.53     |
 Disgust      |   0.76       | 0.64     |
@@ -274,14 +274,14 @@ Sad          |   0.64       | 0.69     |
 Surprise     |   0.49       | 0.57     |
 Neutral      |   0.82       | 0.79     |
 
-###### Table 6:Precision - Recall (on test set) of final model
+###### Table 6: Precision - Recall (on test set) of final model
 
 
 As is evident from the table, the happy class has high precision and recall values since it was the most sampled class in the dataset. The precision values are lower for labels such as surprise and fear. Many samples in these classes are similar, leading to the many false positives.  Also due to the high similarity between fear and sad class, many samples from fear class are classified as sad reducing the recall for fear class. 
 
 ### Justification 
 
-The final model achieves a validation set accuracy of 69.03% and testing set accuracy of 68.93%. This model has shown higher performance as compared to the benchmark model's accuracy on both validation and testing set. 
+The final model achieves a validation set accuracy of **69.03%** and testing set accuracy of **68.93%**. This model has shown higher performance as compared to the benchmark model's accuracy on both validation and testing set. 
 
 Human scores on this dataset are in the range of [65%, 70%] [8] which is comparable to the final model's performance. 
 
@@ -300,7 +300,7 @@ In the case of neutral class, most of the images have faces with mouth closed, w
 It also gets difficult for the model to predict labels for angry and fear classes correctly. In many cases, the face is open in angry and fear images leading to the confusion. 
 
 ![Final Conf Matrix](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/confusion_matrix.jpg "Final confusion matrix")  
-###### Figure 13: Final model ROC curve
+###### Figure 13: Final model confusion matrix
 
 
 ![Final Free Viz](https://raw.githubusercontent.com/Tandon-A/MLEND_Udacity/master/Capstone_Project/assets/free_viz_final_2cr.png "Final free viz")  
@@ -319,11 +319,12 @@ The following steps review the entire project flow:
 5. The model achieving the highest performance on the validation set was selected as the final model and was further evaluated on the testing set.  
 6. A web application was developed using Flask, HTML, Javascript and Heroku. The final model was deployed in this application.  
 
-I found the steps of training and refining models and developing a web app to be most challenging. I had never worked on the deployment of ML models before this project, and so it was a bit difficult for me. Though I was already familiar with the modelling step, it is a time-taking step as their many parameters to experiment with, making it challenging to complete on time.   
+I found the steps of training and refining models and developing a web app to be most challenging. I had never worked on the deployment of ML models before this project, and so it was a bit difficult for me. Though I was already familiar with the modelling step, it is a time-taking step as there are many parameters to experiment with, making it challenging to complete on time.   
 
-The most exciting aspect was the use of Pytorch JIT (Just in time) compiler for converting the model to a representation which can be used for deployment purposes in the web application. While researching the topic, I found some techniques to extend the FER dataset further to do a multi-label emotion classification. I am sure these techniques would be helpful for some future projects.   
+The most exciting aspect was the use of Pytorch JIT (Just in time) compiler for converting the model to a representation which can be used for deployment purposes in the web application.  
+While researching the topic, I found some techniques to extend the FER dataset further to do a multi-label emotion classification. I am sure these techniques would be helpful for some future projects.   
 
-Overall, I am satisfied with the model's performance on the dataset, and it can be used to recognize emotions in static images. 
+Overall, I am satisfied with the model's performance on the dataset, and it can be used to recognize emotions in static images.   
 The code for this project is available at https://github.com/Tandon-A/MLEND_Udacity/tree/master/Capstone_Project, and the web application is available at **(provide web app link)**. 
 
 ### Improvement 
