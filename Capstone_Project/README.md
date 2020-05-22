@@ -1,6 +1,6 @@
 # Machine Learning Engineer Nanodegree
 
-## Capstone Project Reamde 
+## Capstone Project
 
 ## Introduction 
 
@@ -32,12 +32,12 @@ First, the dataset, in this case, the icml_face_data.csv is downloaded from the 
 This CSV file is then uploaded to Google drive which is then linked with the Colaboratory notebook.   
 The CSV file needs to be provided if using a different environment. 
 
-To train models, one of the python notebooks can be used.   
+Two python notebooks are provided: 
 1. FER_Experiments: This notebook contains code for various experiments performed in this project.  
 2. FinalModel: This notebook contains code only for the final model.  
 
 Running the final model notebook should produce similar results, as described in the project report.  
-Both of these notebooks require the CSV file. The CVS file path needs to be provided as per directory structure. (**Change variable FER_DATA_PATH**, defined in the 'data loading' section in the notebooks) 
+Both of these notebooks require the CSV file. The CSV file path needs to be provided as per directory structure. (**Change variable FER_DATA_PATH**, defined in the 'data loading' section in the notebooks) 
 
 The final model can be restored using torch.jit.load. 
 
@@ -50,5 +50,5 @@ Additional functionality to perform inference on natural images can be added to 
 
 ## Notes 
 
-In this project, the random seed is not fixed, so the results would slightly differ from one model training to another. 
+In this project, the random seed is not fixed, so the results would slightly differ from one model trained model to another.  
 
