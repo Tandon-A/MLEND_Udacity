@@ -39,7 +39,7 @@ Two python notebooks are provided:
 Running the final model notebook should produce similar results, as described in the project report.  
 Both of these notebooks require the CSV file. The CSV file path needs to be provided as per directory structure. (**Change variable FER_DATA_PATH**, defined in the 'data loading' section in the notebooks) 
 
-The final model can be restored using torch.jit.load. 
+The final model(model_fer_acc_jit.pth) is stored in the model_data folder, and can be restored using torch.jit.load
 
 ### Web Application 
 
@@ -50,5 +50,5 @@ Additional functionality to perform inference on natural images can be added to 
 
 ## Notes 
 
-In this project, the random seed is not fixed, so the results would slightly differ from one model trained model to another.  
+In this project, the random seed is not fixed, so the results would slightly differ from one trained model to another.  
 
