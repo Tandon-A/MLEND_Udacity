@@ -6,7 +6,7 @@ itsdangerous==1.1.0
 Jinja2==2.11.2
 MarkupSafe==1.1.1
 numpy==1.18.4
-Pillow==7.1.2
+Pillow==8.1.1
 pyspark==2.4.0
 scipy==1.1.0
 -f https://download.pytorch.org/whl/torch_stable.html    
